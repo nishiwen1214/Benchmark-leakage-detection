@@ -3,14 +3,17 @@ import torch
 import torch.nn.functional as F
 import json
 import tqdm
+import argparse
+parser = argparse.ArgumentParser(prog='logprobs', description='')
+parser.add_argument("--model_dir", type=str)
+parser.add_argument("--data_dir", type=str)
+parser.add_argument("--save_dir", type=str)
+args = parser.parse_args()
 
-model_dir = ""
-data_dir = ""
-save_dir = ""
 
 
-tokenizer = AutoTokenizer.from_pretrained(model_dir, trust_remote_code=True)
-model = AutoModelForCausalLM.from_pretrained(model_dir, device_map="auto", trust_remote_code=True,
+tokenizer = AutoTokenizer.from_pretrained(args.model_dir, trust_remote_code=True)
+model = AutoModelForCausalLM.from_pretrained(args.model_dir, device_map="auto", trust_remote_code=True,
                                              attn_implementation="flash_attention_2", torch_dtype="auto").eval()
 
 
@@ -44,7 +47,7 @@ def display(prompt):
     return all_logprobs
 
 
-with open(data_dir, 'r') as file:
+with open(args.data_dir, 'r') as file:
     datas = json.load(file)
 final = []
 i = 0
@@ -57,5 +60,5 @@ for data in tqdm.tqdm(datas):
         torch.cuda.empty_cache()
     i = i + 1
 
-with open(f"{save_dir}/result.json", 'w') as json_file:
+with open(f"{args.save_dir}/result.json", 'w') as json_file:
     json.dump(final, json_file, indent=4, ensure_ascii=False)

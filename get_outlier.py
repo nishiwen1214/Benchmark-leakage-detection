@@ -1,24 +1,32 @@
 from sklearn.ensemble import IsolationForest
 import numpy as np
 import json
-
-data_dir = ""
-logprobs_dir = ""
-save_dir = ""
-method = "IsolationForest1"
-permutation_nmu = 24
+import argparse
+parser = argparse.ArgumentParser(prog='get_outlier', description='')
+parser.add_argument("--logprobs_dir", type=str)
+parser.add_argument("--data_dir", type=str)
+parser.add_argument("--save_dir", type=str)
+parser.add_argument("--method", type=str)
+parser.add_argument("--permutation_nmu", type=str)
+parser.add_argument("--logprobs_dir", type=str)
+args = parser.parse_args()
+# data_dir = ""
+# logprobs_dir = ""
+# save_dir = ""
+# method = "IsolationForest1"
+# permutation_nmu = 24
 thresholds = [-0.25, -0.2, -0.17]
 
-with open(data_dir, 'r') as file:
+with open(args.data_dir, 'r') as file:
     list_data = json.load(file)
-with open(logprobs_dir, 'r') as file:
+with open(args.logprobs_dir, 'r') as file:
     list_logprobs = json.load(file)
 
-list_data = [list_data[i:i + permutation_nmu] for i in range(0, len(list_data), permutation_nmu)]
-list_logprobs = [list_logprobs[i:i + permutation_nmu] for i in range(0, len(list_logprobs), permutation_nmu)]
+list_data = [list_data[i:i + args.permutation_nmu] for i in range(0, len(list_data), args.permutation_nmu)]
+list_logprobs = [list_logprobs[i:i + args.permutation_nmu] for i in range(0, len(list_logprobs), args.permutation_nmu)]
 
 
-if method == "IsolationForest":
+if args.method == "IsolationForest":
     outliers = [[], [], []]
     for index, data in enumerate(list_logprobs):
         X = np.array(data).reshape(-1, 1)
@@ -39,7 +47,7 @@ if method == "IsolationForest":
 
     for i, threshold in enumerate(thresholds):
         print(f"模型阈值{threshold},数据泄露百分比为{len(outliers[i])/len(list_data):.2f}%")
-        with open(f'{save_dir}/outliers{threshold}.json', 'w') as json_file:
+        with open(f'{args.save_dir}/outliers{threshold}.json', 'w') as json_file:
             json.dump(outliers[i], json_file, indent=4, ensure_ascii=False)
 else:
     outliers = []
@@ -58,6 +66,6 @@ else:
                     }
             outliers.append(dict)
     print()
-    with open(f'{save_dir}/outliers_max.json', 'w') as json_file:
+    with open(f'{args.save_dir}/outliers_max.json', 'w') as json_file:
         print(f"模型数据泄露百分比为{len(outliers) / len(list_data):.2f}%")
         json.dump(outliers, json_file, indent=4, ensure_ascii=False)

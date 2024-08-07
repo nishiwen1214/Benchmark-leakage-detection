@@ -49,16 +49,16 @@ def display(prompt):
 
 with open(args.data_dir, 'r') as file:
     datas = json.load(file)
-final = []
+logprobs_list = []
 i = 0
 for data in tqdm.tqdm(datas):
 
     result = display(data["instruction"])
-    final.append(result)
+    logprobs_list.append(result)
 
     if i % 1000 == 0:
         torch.cuda.empty_cache()
     i = i + 1
 
-with open(f"{args.save_dir}/result.json", 'w') as json_file:
-    json.dump(final, json_file, indent=4, ensure_ascii=False)
+with open(f"{args.save_dir}/logprobs.json", 'w') as json_file:
+    json.dump(logprobs_list, json_file, indent=4, ensure_ascii=False)

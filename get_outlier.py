@@ -7,15 +7,9 @@ parser.add_argument("--logprobs_dir", type=str)
 parser.add_argument("--data_dir", type=str)
 parser.add_argument("--save_dir", type=str)
 parser.add_argument("--method", type=str)
-parser.add_argument("--permutation_nmu", type=str)
-parser.add_argument("--logprobs_dir", type=str)
+parser.add_argument("--permutation_nmu", type=int)
 args = parser.parse_args()
-# data_dir = ""
-# logprobs_dir = ""
-# save_dir = ""
-# method = "IsolationForest1"
-# permutation_nmu = 24
-thresholds = [-0.25, -0.2, -0.17]
+thresholds = [-0.2, -0.17, -0.15]
 
 with open(args.data_dir, 'r') as file:
     list_data = json.load(file)
@@ -24,6 +18,7 @@ with open(args.logprobs_dir, 'r') as file:
 
 list_data = [list_data[i:i + args.permutation_nmu] for i in range(0, len(list_data), args.permutation_nmu)]
 list_logprobs = [list_logprobs[i:i + args.permutation_nmu] for i in range(0, len(list_logprobs), args.permutation_nmu)]
+
 
 
 if args.method == "IsolationForest":
@@ -59,13 +54,12 @@ else:
                 isMax = False
                 break
         if isMax:
-            dict = {"index": index,
-                    "max_value_index": 0,
+            dict = {"index": str(index),
+                    "max_value_index": str(0),
                     "data": list_data[index][0]["instruction"],
                     "logprobs": data[0]
                     }
             outliers.append(dict)
-    print()
     with open(f'{args.save_dir}/outliers_max.json', 'w') as json_file:
         print(f"模型数据泄露百分比为{len(outliers) / len(list_data):.2f}%")
         json.dump(outliers, json_file, indent=4, ensure_ascii=False)

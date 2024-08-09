@@ -2,6 +2,7 @@ from sklearn.ensemble import IsolationForest
 import numpy as np
 import json
 import argparse
+
 parser = argparse.ArgumentParser(prog='get_outlier', description='')
 parser.add_argument("--logprobs_dir", type=str)
 parser.add_argument("--data_dir", type=str)
@@ -18,8 +19,6 @@ with open(args.logprobs_dir, 'r') as file:
 
 list_data = [list_data[i:i + args.permutation_nmu] for i in range(0, len(list_data), args.permutation_nmu)]
 list_logprobs = [list_logprobs[i:i + args.permutation_nmu] for i in range(0, len(list_logprobs), args.permutation_nmu)]
-
-
 
 if args.method == "IsolationForest":
     outliers = [[], [], []]
@@ -41,7 +40,7 @@ if args.method == "IsolationForest":
                 outliers[outlier_index].append(outlier)
 
     for i, threshold in enumerate(thresholds):
-        print(f"模型阈值{threshold},数据泄露百分比为{len(outliers[i])/len(list_data):.2f}%")
+        print(f"模型阈值{threshold},数据泄露百分比为{len(outliers[i]) / len(list_data):.2f}%")
         with open(f'{args.save_dir}/outliers{threshold}.json', 'w') as json_file:
             json.dump(outliers[i], json_file, indent=4, ensure_ascii=False)
 else:
@@ -54,11 +53,12 @@ else:
                 isMax = False
                 break
         if isMax:
-            dict = {"index": str(index),
-                    "max_value_index": str(0),
-                    "data": list_data[index][0]["instruction"],
-                    "logprobs": data[0]
-                    }
+            dict = {
+                "index": str(index),
+                "max_value_index": str(0),
+                "data": list_data[index][0]["instruction"],
+                "logprobs": data[0]
+            }
             outliers.append(dict)
     with open(f'{args.save_dir}/outliers_max.json', 'w') as json_file:
         print(f"模型数据泄露百分比为{len(outliers) / len(list_data):.2f}%")

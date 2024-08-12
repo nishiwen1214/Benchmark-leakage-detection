@@ -6,7 +6,7 @@ import tqdm
 import argparse
 parser = argparse.ArgumentParser(prog='logprobs', description='')
 parser.add_argument("--model_dir", type=str)
-parser.add_argument("--data_dir", type=str)
+parser.add_argument("--permutations_data_dir", type=str)
 parser.add_argument("--save_dir", type=str)
 args = parser.parse_args()
 
@@ -47,18 +47,16 @@ def display(prompt):
     return all_logprobs
 
 
-with open(args.data_dir, 'r') as file:
+with open(args.permutations_data_dir, 'r') as file:
     datas = json.load(file)
 logprobs_list = []
-i = 0
-for data in tqdm.tqdm(datas):
+
+for index,data in enumerate(tqdm.tqdm(datas)):
 
     result = display(data["instruction"])
     logprobs_list.append(result)
-
-    if i % 1000 == 0:
+    if index % 1000 == 0:
         torch.cuda.empty_cache()
-    i = i + 1
 
 with open(f"{args.save_dir}/logprobs.json", 'w') as json_file:
     json.dump(logprobs_list, json_file, indent=4, ensure_ascii=False)

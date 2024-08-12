@@ -2,17 +2,18 @@ from sklearn.ensemble import IsolationForest
 import numpy as np
 import json
 import argparse
+import tqdm
 
 parser = argparse.ArgumentParser(prog='get_outlier', description='')
 parser.add_argument("--logprobs_dir", type=str)
-parser.add_argument("--data_dir", type=str)
+parser.add_argument("--permutations_data_dir", type=str)
 parser.add_argument("--save_dir", type=str)
 parser.add_argument("--method", type=str)
 parser.add_argument("--permutation_nmu", type=int)
 args = parser.parse_args()
 thresholds = [-0.2, -0.17, -0.15]
 
-with open(args.data_dir, 'r') as file:
+with open(args.permutations_data_dir, 'r') as file:
     list_data = json.load(file)
 with open(args.logprobs_dir, 'r') as file:
     list_logprobs = json.load(file)
@@ -22,7 +23,7 @@ list_logprobs = [list_logprobs[i:i + args.permutation_nmu] for i in range(0, len
 
 if args.method == "IsolationForest":
     outliers = [[], [], []]
-    for index, data in enumerate(list_logprobs):
+    for index, data in enumerate(tqdm.tqdm(list_logprobs)):
         X = np.array(data).reshape(-1, 1)
         clf = IsolationForest(n_estimators=100, contamination='auto', random_state=42)
         clf.fit(X)

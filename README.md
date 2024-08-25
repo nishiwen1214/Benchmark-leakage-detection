@@ -10,12 +10,12 @@ Benchmark-leakage-detection is a method about data leakage detection.We conducte
 ## Benchmark leakage leaderboard in LLMs
 ![image](image/llms_leakage_detection.png)
 
-### How to Evaluate on Benchmark-leakage-detection
+## How to Evaluate on Benchmark-leakage-detection
 
-#### Data process
+### Data process
 First, you need to prepare the data you need to detect, please refer to [example_data.json](data/example_data.json) for details.
 
-'''
+  ```
 {
    'option': {
    'A': '由间充质增生形成', 
@@ -25,7 +25,7 @@ First, you need to prepare the data you need to detect, please refer to [example
     },
    'question': '下列有关鳃弓的描述，错误的是'
 }
-'''
+  ```
 
 Then use this command to obtain the permutations_data.json.
 
@@ -33,14 +33,14 @@ Then use this command to obtain the permutations_data.json.
 python data_process.py  --data_dir data_dir --save_dir data
 ```
 
-#### Inference logprobs
+### Inference logprobs
 Second,use this command to obtain the logprobs.json.
 
 ```bash
 CUDA_VISIBLE_DEVICES=0 python inference_logprobs.py --model_dir model_dir --permutations_data_dir data/permutations_data.json --save_dir data
 ```
 
-#### Get outlier
+### Get outlier
 Finally,use this command to obtain outlier-(thresholds/max).json.'permutation_num' represents the factorial of the number of your options.You can specify 'shuffled' or 'not_shuffled' as the parameter for the 'method', where 'shuffled' and 'not_shuffled' represent Scenario A and Scenario B, respectively.
 
 ```bash

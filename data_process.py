@@ -2,7 +2,7 @@ import json
 import itertools
 import argparse
 
-"""
+'''
 {
    'option': {
    'A': '由间充质增生形成', 
@@ -12,7 +12,7 @@ import argparse
     },
    'question': '下列有关鳃弓的描述，错误的是'
 }
-"""
+'''
 parser = argparse.ArgumentParser(prog='data_process', description='')
 parser.add_argument("--data_dir", type=str)
 parser.add_argument("--save_dir", type=str)

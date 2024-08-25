@@ -21,7 +21,7 @@ with open(args.logprobs_dir, 'r') as file:
 list_data = [list_data[i:i + args.permutation_nmu] for i in range(0, len(list_data), args.permutation_nmu)]
 list_logprobs = [list_logprobs[i:i + args.permutation_nmu] for i in range(0, len(list_logprobs), args.permutation_nmu)]
 
-if args.method == "IsolationForest":
+if args.method == "shuffled":
     outliers = [[], [], []]
     for index, data in enumerate(tqdm.tqdm(list_logprobs)):
         X = np.array(data).reshape(-1, 1)

@@ -42,7 +42,7 @@ CUDA_VISIBLE_DEVICES=0 python inference_logprobs.py --model_dir model_dir --perm
 ```
 
 ### Get outlier
-Finally,use this command to obtain outlier-(thresholds/max).json.'permutation_num' represents the factorial of the number of your options.You can specify 'shuffled' or 'not_shuffled' as the parameter for the 'method', where 'shuffled' and 'not_shuffled' represent Scenario A and Scenario B, respectively.
+Finally,use this command to obtain outlier-(thresholds/max).json.'permutation_num' represents the factorial of the number of your options.You can specify 'shuffled' or 'not_shuffled' as the parameter for the 'method', where 'not_shuffled' and 'shuffled' represent 'Scenario a' and 'Scenario b', respectively.
 
 ```bash
 python get_outlier.py --logprobs_dir data/logprobs.json --permutations_data_dir data/permutations_data.json --save_dir data --method shuffled --permutation_num 24

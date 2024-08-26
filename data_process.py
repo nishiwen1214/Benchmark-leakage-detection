@@ -39,8 +39,6 @@ B:{row["option"][perm[1]]}
 C:{row["option"][perm[2]]} 
 D:{row["option"][perm[3]]}
 """,
-            # "instruction": row['question'] + "\n" + "A:" + row["option"][perm[0]] + "\n" + "B:" + row["option"][
-            #     perm[1]] + "\n" + "C:" + row["option"][perm[2]] + "\n" + "D:" + row["option"][perm[3]] + "\n",
         }
         result.append(instruction)
 

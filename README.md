@@ -1,5 +1,5 @@
 # Benchmark-leakage-detection
-Benchmark-leakage-detection is a method about data leakage detection.We conducted leakage detection experiments on four benchmark: MMLU,CMMLU, C-Eval and CMB.More details can be found in our [paper]().
+Benchmark-leakage-detection is a method about data leakage detection.We conducted leakage detection experiments on four benchmark: MMLU,CMMLU, C-Eval and CMB. More details can be found in our [paper]().
 
 ## Table of Contents
 

@@ -1,5 +1,5 @@
 # Benchmark-leakage-detection
-Benchmark-leakage-detection is a method about data leakage detection.We conducted leakage detection experiments on four benchmark: MMLU, CMMLU, C-Eval and CMB. More details can be found in our [paper]().
+Benchmark-leakage-detection is a method about data leakage detection.We conducted leakage detection experiments on four benchmark: MMLU, CMMLU, C-Eval and CMB. More details can be found in our [paper](https://web3.arxiv.org/abs/2409.01790).
 
 ## Table of Contents
 
@@ -52,11 +52,11 @@ You can specify 'shuffled' or 'not_shuffled' as the parameter for the 'method', 
 
 ## Citation
 ```
-@article{ni2024benchmark-leakage-detection,
-            title={Training on the Benchmark Is Not All You Need},
-            author={Shiwen Ni, Xiangtao Kong, Chengming Li, Xiping Hu, Ruifeng Xu, Jia Zhu, Min Yang },
-            journal={},
-            year={2024}
+@inproceedings{Ni2024TrainingOT,
+  title={Training on the Benchmark Is Not All You Need},
+  author={Shiwen Ni and Xiangtao Kong and Chengming Li and Xiping Hu and Ruifeng Xu and Jia Zhu and Min Yang},
+  year={2024},
+  url={https://api.semanticscholar.org/CorpusID:272367930}
 }
 ```
 

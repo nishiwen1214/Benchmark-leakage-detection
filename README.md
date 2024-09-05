@@ -40,6 +40,10 @@ Second,use this command to obtain the logprobs.json.
 ```bash
 CUDA_VISIBLE_DEVICES=0 python inference_logprobs.py --model_dir model_dir --permutations_data_dir data/permutations_data.json --save_dir data
 ```
+Alternatively, you can use data parallelism on multiple GPUs.
+```bash
+python3 inference_logprob_parallel.py --model_dir model_dir --permutations_data_dir data/permutations_data.json --save_dir data --world_size 8
+```
 
 ### Get outlier
 Finally,use this command to obtain outlier-(thresholds/max).json.

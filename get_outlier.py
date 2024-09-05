@@ -9,7 +9,7 @@ parser.add_argument("--logprobs_dir", type=str)
 parser.add_argument("--permutations_data_dir", type=str)
 parser.add_argument("--save_dir", type=str)
 parser.add_argument("--method", type=str)
-parser.add_argument("--permutation_nmu", type=int)
+parser.add_argument("--permutation_num", type=int)
 args = parser.parse_args()
 thresholds = [-0.2, -0.17, -0.15]
 
@@ -18,8 +18,8 @@ with open(args.permutations_data_dir, 'r') as file:
 with open(args.logprobs_dir, 'r') as file:
     list_logprobs = json.load(file)
 
-list_data = [list_data[i:i + args.permutation_nmu] for i in range(0, len(list_data), args.permutation_nmu)]
-list_logprobs = [list_logprobs[i:i + args.permutation_nmu] for i in range(0, len(list_logprobs), args.permutation_nmu)]
+list_data = [list_data[i:i + args.permutation_num] for i in range(0, len(list_data), args.permutation_num)]
+list_logprobs = [list_logprobs[i:i + args.permutation_num] for i in range(0, len(list_logprobs), args.permutation_num)]
 
 if args.method == "shuffled":
     outliers = [[], [], []]

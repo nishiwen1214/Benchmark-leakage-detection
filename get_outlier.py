@@ -62,5 +62,5 @@ else:
             }
             outliers.append(dict)
     with open(f'{args.save_dir}/outliers_max.json', 'w') as json_file:
-        print(f"模型数据泄露百分比为{len(outliers) / len(list_data):.2f}%")
+        print(f"模型数据泄露百分比为{len(outliers)*100 / len(list_data):.2f}%")
         json.dump(outliers, json_file, indent=4, ensure_ascii=False)

@@ -56,11 +56,11 @@ You can specify 'shuffled' or 'not_shuffled' as the parameter for the 'method', 
 
 ## Citation
 ```
-@inproceedings{Ni2024TrainingOT,
+@article{ni2024training,
   title={Training on the Benchmark Is Not All You Need},
-  author={Shiwen Ni and Xiangtao Kong and Chengming Li and Xiping Hu and Ruifeng Xu and Jia Zhu and Min Yang},
-  year={2024},
-  url={https://api.semanticscholar.org/CorpusID:272367930}
+  author={Ni, Shiwen and Kong, Xiangtao and Li, Chengming and Hu, Xiping and Xu, Ruifeng and Zhu, Jia and Yang, Min},
+  journal={arXiv preprint arXiv:2409.01790},
+  year={2024}
 }
 ```
 

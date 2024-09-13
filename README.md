@@ -1,7 +1,7 @@
 # Benchmark-leakage-detection
 Benchmark-leakage-detection is a method about data leakage detection. We conducted leakage detection experiments on four benchmark: MMLU, CMMLU, C-Eval and CMB. More details can be found in our paper: [Training on the Benchmark Is Not All You Need](https://web3.arxiv.org/abs/2409.01790).
 
-## Note: The data leakage in the paper refers to the fact that the benchmark test data is included in the training data of LLMs and does not represent artificial cheating. In addition, CMB is a benchmark in the medical field and is not usually targeted for data cleaning by LLM developers. 
+### ⭐️ Note: The data leakage in the paper refers to the fact that the benchmark test data is included in the training data of LLMs and does not represent artificial cheating. In addition, CMB is a benchmark in the medical field and is not usually targeted for data cleaning by LLM developers. 
 
 ## Table of Contents
 

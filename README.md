@@ -15,6 +15,7 @@ Benchmark-leakage-detection is a method about data leakage detection. We conduct
 
 ### Data process
 First, you need to prepare the data you need to detect, please refer to [example_data.json](data/example_data.json) for details.
+It should be noted that MMLU, CMMLU, and C-Eval have 4 options each, while CMB has 5 options.
 
   ```
 {
@@ -22,7 +23,8 @@ First, you need to prepare the data you need to detect, please refer to [example
    'A': '由间充质增生形成', 
    'B': '人胚第4周出现', 
    'C': '相邻鳃弓之间为鳃沟',
-    'D': '共5对鳃弓'
+   'D': '共5对鳃弓',
+   "E": "位于头部两侧"
     },
    'question': '下列有关鳃弓的描述，错误的是'
 }

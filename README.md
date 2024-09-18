@@ -3,15 +3,9 @@ Benchmark-leakage-detection is a method about data leakage detection. We conduct
 
 **⭐️ Note: The data leakage in the paper refers to the fact that the benchmark test data is included in the training data of LLMs and does not represent artificial cheating. In addition, CMB is a benchmark in the medical field and is not usually targeted for data cleaning by LLM developers.**
 
-## Table of Contents
-
-- Benchmark leakage leaderboard in LLMs
-- How to Evaluate on Benchmark-leakage-detection
-- Citation
-- TODO
 
 ## Benchmark leakage leaderboard in LLMs (Continuously updated...)
-![image](image/llms_leakage_detection.png)
+![image](https://github.com/user-attachments/assets/07e8f712-012e-47d2-90ab-3cc0aeb22e9c)
 
 ## How to Evaluate on Benchmark-leakage-detection
 

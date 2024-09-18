@@ -10,7 +10,7 @@ Benchmark-leakage-detection is a method about data leakage detection. We conduct
 - Citation
 - TODO
 
-## Benchmark leakage leaderboard in LLMs
+## Benchmark leakage leaderboard in LLMs (Continuously updated...)
 ![image](image/llms_leakage_detection.png)
 
 ## How to Evaluate on Benchmark-leakage-detection
